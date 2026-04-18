@@ -1,0 +1,25 @@
+# 📘 Divide-By-Three Machine (Serial Input FSM)
+
+## 📌 Overview
+
+This module implements a **serial divide-by-three checker**, which determines whether a dynamically growing binary number is divisible by 3.
+
+The machine takes a **1-bit input (`x_i`) every clock cycle** and appends it to the **least significant bit (LSB)** of the current number. After each new bit is added, the module immediately evaluates whether the updated number is divisible by 3.
+
+Since the number grows indefinitely, the design avoids storing the full value and instead uses an efficient **finite state machine (FSM)** based on modulo arithmetic.
+
+---
+
+## ⚙️ Key Features
+
+* Serial input stream (`x_i`) forming a continuously growing binary number
+* Output (`div_o`) asserted when the current number is divisible by 3
+* **Same-cycle output response** (no latency)
+* Efficient FSM implementation using **modulo-3 tracking**
+* No need to store the full binary number (constant hardware cost)
+* Fully synchronous design with:
+
+  * Positive edge-triggered flops
+  * Asynchronous reset
+* Handles continuous input stream without stalls
+* Defines `div_o = 1` when the current number is **0**
